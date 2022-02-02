@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 10vw;
+        }
+        button {
+            margin: auto;
+            background-color: black;
+            color: white;
+            padding: 2rem;
+            width: 20vw;
+            font-size: 2rem;
+        }
+        .bg-red {
+            background-color: red;
+        }
+
+        .bg-white {
+            background-color: white;
+        }
+    </style>
+    <title>JS Challenge 4</title>
+</head>
+<body>
+    <button onclick="updateTheBackground('bg-red')">red</button>
+    <button onclick="updateTheBackground('bg-white')">white</button>
+</body>
+<script src="app.js"></script>
+</html>
