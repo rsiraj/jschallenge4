@@ -61,23 +61,54 @@ window.updateTheBackground = function(className) {
 // Example 2:
 // Input: coins = [2], amount = 3
 // Output: -1
-function changeCalculator (coins, change) {
-    coins.sort(function(a, b){return b - a});
+// function coinCalculator (coins, change) {
+//     coins.sort(function(a, b){return b - a}); // sorts the array in descending order
+//     if (coins[coins.length-1] > change || change === 0){ // if the smallest coin is bigger than the change, or if change is 0, return -1
+//         return -1;
+//     }
+//     else {
+//         let remainder = change;
+//         while (remainder){
+//             let numCoins = 0
+//             for (i = 0; i < coins.length; i++){
+//                 if (coins[i] === remainder){
+//                     return remainder;
+//                 }
+//                 else {
+//                     remainder -= coins[i];
+//                     numCoins++;
+//                 }
+//             }
+//             return numCoins;
+//         }
+//     }
+// }
+
+// console.log(coinCalculator([3,12,2],15)) // gave up on this solution after tinkering for hours
+function coinCalculator(coins, change){
+    coins.sort(function(a,b){
+        return b-a
+    });
+    
+    let minCoins = 0;
     let remainder = change;
-    let numCoins = 0
-    while (remainder){
-        for (i = 0; i < coins.length; i++){
-            if (coins[i] <= remainder){
-                remainder -= coins[i];
-                numCoins++;
-                break;
-            }
-            if (i === 0 && coins[i] > remainder){
-                return -1;
-            }
+    let i = 0;
+
+    while(change){
+        if(remainder / coins[i] < 1){
+            i++;
+        }
+        else{
+            minCoins = minCoins + Math.floor(remainder / coins[i]);
+            remainder = remainder % coins[i];
+            i++;
+        }
+        if(remainder == 0){
+            return minCoins;
+        }
+        if(i == coins.length){
+            return -1;
         }
     }
-    return numCoins;
 }
-
-console.log(changeCalculator([1,3,12,2],13))
+console.log(coinCalculator([11, 1, 2, 5], 19)); // 4
